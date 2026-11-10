@@ -1,0 +1,12 @@
+config.json
+config.prod.json
+.env
+.env.*
+!.env.sample
+.git
+.gitignore
+docker-compose.yml
+backup/
+*.md
+*.log
+node_modules/

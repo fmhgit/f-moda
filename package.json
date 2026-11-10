@@ -1,0 +1,18 @@
+{
+  "name": "modelscope-proxy",
+  "version": "1.0.0",
+  "description": "ModelScope API 代理中间件 - 稳定、完善的 OpenAI 兼容代理",
+  "main": "proxy.js",
+  "scripts": {
+    "start": "node proxy.js",
+    "dev": "node proxy.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "node-fetch": "^2.7.0",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

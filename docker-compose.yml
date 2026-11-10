@@ -1,0 +1,41 @@
+services:
+  f-moda-node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: f-moda-node
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    environment:
+      - NODE_ENV=production
+      - PORT=4200
+      # 真实值放在同目录 .env 中（已被忽略），compose 自动读取 ${...}
+      - NAME=端点-1
+      - API_KEY=${API_KEY}
+      - AUTH_KEY=${AUTH_KEY}
+      - MODEL=Qwen/Qwen3.5-35B-A3B
+      # 可选：
+      # - LOG_LEVEL=info
+      # - TIMEOUT_CONNECTION=30000
+      # - TIMEOUT_REQUEST=120000
+      # - TIMEOUT_STREAM_CHUNK=60000
+      # - RETRY_MAX_RETRIES=3
+      # - RETRY_DELAY=1000
+      # - RETRY_ON_STATUS=429,500,502,503,504
+      # - RATE_LIMIT_ENABLED=false
+      # - RATE_LIMIT_WINDOW_MS=60000
+      # - RATE_LIMIT_MAX_REQUESTS=100
+      # - PROXY_ENABLED=false
+      # - PROXY_URL=
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4200/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

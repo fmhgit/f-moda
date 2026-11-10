@@ -1,0 +1,27 @@
+{
+  "name": "point-1",
+  "apiKey": "",
+  "authKey": "",
+  "model": "Qwen/Qwen3.5-35B-A3B",
+  "port": 4200,
+  "timeout": {
+    "connection": 30000,
+    "request": 120000,
+    "streamChunk": 60000
+  },
+  "retry": {
+    "maxRetries": 3,
+    "retryDelay": 1000,
+    "retryOnStatusCodes": [429, 500, 502, 503, 504]
+  },
+  "proxy": {
+    "enabled": false,
+    "url": ""
+  },
+  "rateLimit": {
+    "enabled": false,
+    "windowMs": 60000,
+    "maxRequests": 100
+  },
+  "logLevel": "info"
+}
